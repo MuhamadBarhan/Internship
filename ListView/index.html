@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List View</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <div class="container">     
+        <div class="searchDlt">
+            <input type="text" id="search" placeholder="Search here..." onkeyup="searchTable()">
+            <button onclick="bulkDelete()" class="btn-cd dlt">Bulk Delete</button>
+            <button onclick="openMod()" class="btn-cd"><i class="fa-solid fa-pen"></i>Create Student</button>
+        </div>
+    
+        <table id="table">
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Reg No</th>
+                    <th>Department</th>
+                    <th>College</th>
+                    <th>Action</th>
+                </tr>
+        </table>
+    </div>
+
+    <div id="formCont">
+        <span id="close-btn" onclick="closeMod()"><i class="fa-solid fa-circle-xmark"></i></span>
+        <input type="text" id="name" placeholder="Enter Name">
+        <input type="text" id="reg" placeholder="Enter Reg No">
+        <input type="text" id="dept" placeholder="Enter Department">
+        <input type="text" id="clg" placeholder="Enter College">
+        <div>
+            <button onclick="closeMod()" class="btn-cd cancel">Cancel</button>
+            <button onclick="addRow()" class="btn-cd">Create</button>
+        </div>
+        
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

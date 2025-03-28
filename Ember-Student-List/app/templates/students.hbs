@@ -1,0 +1,25 @@
+<div class="container">
+    <h4>STUDENT LIST</h4>
+    <div class="searchDlt">
+        <div class="search-cont">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="search" placeholder="Search here..." {{on "keyup" this.searchTable}}>
+        </div>
+        <div>
+            <button {{on "click" this.bulkDelete}} class="btn-cd dlt"><i class="fa-solid fa-list-check"></i>Bulk Delete</button>
+            <LinkTo @route="students.add" class="btn-cd">
+                <i class="fa-solid fa-user-plus"></i> Add Student
+            </LinkTo>
+        </div>
+    </div>
+
+    <StudentList @students={{this.students.students}} @deleteRow={{this.deleteRow}} @editRow={{this.editRow}} />
+</div>
+
+{{#if this.isFormVisible}}
+<StudentForm @editStudent={{this.editStudent}} @students={{this.students.students}} @saveStudent={{this.saveStudent}}
+    @updateStudents={{this.updateStudents}} @closeForm={{this.closeForm}} />
+{{/if}}
+
+
+{{outlet}}

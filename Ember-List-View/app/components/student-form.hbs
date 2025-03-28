@@ -1,0 +1,15 @@
+<div id="formCont">
+    <span id="close-btn" {{on "click" @closeForm}}>
+        <i class="fa-solid fa-circle-xmark"></i>
+    </span>
+
+    <input type="text" value={{this.name}} {{on "input" this.updateName}} placeholder="Enter Name">
+    <input type="text" value={{this.reg}} {{on "input" this.updateReg}} placeholder="Enter Reg No">
+    <input type="text" value={{this.dept}} {{on "input" this.updateDept}} placeholder="Enter Department">
+    <input type="text" value={{this.clg}} {{on "input" this.updateClg}} placeholder="Enter College">
+
+    <div class="decision">
+        <button {{on "click" @closeForm}} class="btn-cd cancel">Cancel</button>
+        <button {{on "click" this.saveStudent}} class="btn-cd">{{if this.isEditing "Update" "Create"}}</button>
+    </div>
+</div>

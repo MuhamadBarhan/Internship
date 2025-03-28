@@ -1,0 +1,23 @@
+<div class="table-container">
+    <table id="table">
+        <tr>
+            <th>Select</th>
+            <th>Name</th>
+            <th>Reg No</th>
+            <th>Department</th>
+            <th>College</th>
+            <th>Action</th>
+        </tr>
+        {{#each @students as |student|}}
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>{{student.name}}</td>
+            <td>{{student.reg}}</td>
+            <td>{{student.dept}}</td>
+            <td>{{student.clg}}</td>
+            <td><button class="btn btn-edit" type="button" {{on "click" (fn @editRow student.reg)}}><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="btn btn-dlt" type="button" {{on "click" (fn @deleteRow student.reg)}}><i class="fa-solid fa-trash"></i></button></td>
+        </tr>
+        {{/each}}
+    </table>
+</div>

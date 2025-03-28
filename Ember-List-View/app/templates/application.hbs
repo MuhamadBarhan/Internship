@@ -1,0 +1,23 @@
+{{#if this.isOverlayVisible}}
+<div id="overlay"></div>
+{{/if}}
+
+<div class="container">
+    <h4>STUDENT LIST</h4>
+    <div class="searchDlt">
+        <div class="search-cont">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="search" placeholder="Search here..." {{on "keyup" this.searchTable}}>
+        </div>
+        <div>
+            <button {{on "click" this.bulkDelete}} class="btn-cd dlt"><i class="fa-solid fa-list-check"></i>Bulk Delete</button>
+            <button {{on "click" this.openForm}} class="btn-cd"><i class="fa-solid fa-user-plus"></i>Add Student</button>
+        </div>
+    </div>
+
+    <StudentList @students={{this.students}} @deleteRow={{this.deleteRow}} @editRow={{this.editRow}}/>
+</div>
+
+{{#if this.isFormVisible}}
+<StudentForm @students={{this.students}} @addRow={{this.addRow}} @closeForm={{this.closeForm}} @editStudent={{this.editStudent}} @updateStudents={{this.updateStudents}}/>
+{{/if}}
