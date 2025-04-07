@@ -1,4 +1,4 @@
-<div id="formCont" {{on-key 'Enter' this.handleEnter}} {{on-key 'Escape' @closeForm}}>
+<div id="formCont" {{on-key 'Enter' this.handleEnter}} {{on-key 'Escape' @closeForm}} {{on-click-outside @closeForm}}>
   <h5>{{if this.isEditing "Edit Student" "Add New Student"}}</h5>
 
   <span id="close-btn" {{on "click" @closeForm}}>

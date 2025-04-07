@@ -66,8 +66,7 @@ export default class StudentFormComponent extends Component {
         this.args.closeForm();
     }
 
-    @action
-    handleEnter(event) {
+    @action handleEnter(event) {
         event.preventDefault();
         if (event.key === "Enter") {
             this.saveStudent();
