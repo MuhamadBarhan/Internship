@@ -1,13 +1,29 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { service } from '@ember/service';
 
 export default class StudentFormComponent extends Component {
+    @service flashMessages;
+
     @tracked name = this.args.editStudent?.name || '';
     @tracked reg = this.args.editStudent?.reg || '';
-    @tracked dept = this.args.editStudent?.dept || '';
+    @tracked selectedSkills = this.args.editStudent?.skills || [];
+    @tracked dept = this.args.editStudent?.dept || null;
     @tracked clg = this.args.editStudent?.clg || '';
     @tracked isEditing = !!this.args.editStudent;
+
+    skills = ['JavaScript', 'React', 'Spring Boot', 'Flutter', 'MySQL', 'Node.js', 'CSS', 'HTML'];
+
+    @action updateSkills(selected) {
+        this.selectedSkills = selected;
+        console.log(this.selectedSkills);
+    }
+    
+    departments = ['IT', 'CSE', 'ECE', 'MECH'];
+    @action updateDept(selectedDept) {
+        this.dept = selectedDept;
+    }
 
     @action updateName(event) {
         this.name = event.target.value;
@@ -17,9 +33,6 @@ export default class StudentFormComponent extends Component {
         this.reg = event.target.value;
     }
 
-    @action updateDept(event) {
-        this.dept = event.target.value;
-    }
 
     @action updateClg(event) {
         this.clg = event.target.value;
@@ -27,15 +40,15 @@ export default class StudentFormComponent extends Component {
 
     @action saveStudent() {
 
-        if(!this.name || !this.reg || !this.dept || !this.clg) {
-            alert("Fill all the details");
+        if (!this.name || !this.reg || !this.dept || !this.clg || this.selectedSkills.length === 0) {
+            this.flashMessages.warning("Fill all the details");
             return;
         }
 
         if (this.isEditing) {
             let updatedStudents = this.args.students.map(student =>
                 student.reg === this.reg
-                    ? { ...student, name: this.name, dept: this.dept, clg: this.clg }
+                    ? { ...student, name: this.name, dept: this.dept,skills: this.selectedSkills, clg: this.clg }
                     : student
             );
 
@@ -45,10 +58,20 @@ export default class StudentFormComponent extends Component {
                 name: this.name,
                 reg: this.reg,
                 dept: this.dept,
+                skills: this.selectedSkills,
                 clg: this.clg
             });
         }
 
         this.args.closeForm();
     }
+
+    @action
+    handleEnter(event) {
+        event.preventDefault();
+        if (event.key === "Enter") {
+            this.saveStudent();
+        }
+    }
+
 }

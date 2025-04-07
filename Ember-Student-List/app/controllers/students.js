@@ -1,47 +1,74 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
+import { task, timeout } from 'ember-concurrency';
 
 export default class StudentsController extends Controller {
 
     @service router;
     @service students;
+    @service flashMessages;
     @tracked isFormVisible = false;
     @tracked editStudent = null;
+    @tracked selectAll = false;
+
+    get currentRoute() {
+        return this.router.currentRouteName;
+    }
+
+    @action addStud() {
+        this.router.transitionTo('students.add');
+    }
+
+    @action toggleSelectAll(event) {
+        this.selectAll = event.target.checked;
+
+        let checkboxes = document.querySelectorAll("#table input[type='checkbox']");
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = this.selectAll;
+        });
+    }
+
+    @task
+    *searchTable(event) {
+        let input = event.target.value.toLowerCase();
+        yield timeout(300);
+        this.students.searchStudents(input);
+    }
+
+    @action handleSearch(event) {
+        this.searchTable.perform(event);
+    }
 
     @action bulkDelete() {
         let checkboxes = document.querySelectorAll("#table input[type='checkbox']:checked");
+
         if (!checkboxes.length) {
-            alert("Select one or more rows to bulk delete");
+            this.flashMessages.warning('Select one or more rows to delete');
             return;
         }
 
-        checkboxes.forEach(checkbox => {
-            let row = checkbox.parentElement.parentElement;
-            this.deleteRow(row.cells[2].textContent);
-            row.remove();
+        let selectedRegs = Array.from(checkboxes).map(checkbox => {
+            let row = checkbox.closest("tr");
+            return row.cells[1].textContent.trim();
         });
-    }
 
-    @action searchTable(event) {
-        let input = event.target.value.toLowerCase();
-        let rows = document.querySelectorAll("#table tr");
+        this.students.filteredStudents = this.students.filteredStudents.filter(
+            student => !selectedRegs.includes(String(student.reg)));
 
-        rows.forEach((row, index) => {
-            if (index === 0) return;
-            row.style.display = row.innerText.toLowerCase().includes(input) ? "" : "none";
-        });
+        this.selectAll = false;
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+
+        this.flashMessages.success('Selected students deleted successfully', { timeout: 2000 });
     }
 
     @action deleteRow(reg) {
-        this.students.students = this.students.students.filter(student => student.reg !== reg);
+        this.students.filteredStudents = this.students.filteredStudents.filter(student => student.reg !== reg);
     }
 
     @action editRow(reg) {
-        this.editStudent = this.students.students.find(student => student.reg === reg);
+        this.editStudent = this.students.filteredStudents.find(student => student.reg === reg);
         this.router.transitionTo('students.edit', reg);
     }
-
-
 }

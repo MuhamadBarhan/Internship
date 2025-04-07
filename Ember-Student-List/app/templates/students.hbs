@@ -1,25 +1,27 @@
-<div class="container">
-    <h4>STUDENT LIST</h4>
-    <div class="searchDlt">
-        <div class="search-cont">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="search" placeholder="Search here..." {{on "keyup" this.searchTable}}>
-        </div>
-        <div>
-            <button {{on "click" this.bulkDelete}} class="btn-cd dlt"><i class="fa-solid fa-list-check"></i>Bulk Delete</button>
-            <LinkTo @route="students.add" class="btn-cd">
+{{#each this.flashMessages.queue as |flash|}}
+<FlashMessage @flash={{flash}} @messageStyle='bootstrap' />
+{{/each}}
+
+<div class="{{if (or (eq this.currentRoute 'students.add') (eq this.currentRoute 'students.edit')) 'full-screen-outlet' ''}}">
+    {{liquid-outlet}}
+</div>
+
+
+<div class="student-container">
+    <div class="search-dlt-cont">
+        <span>Student List</span>
+        <div class="search-cd-cont">
+            <div class="search-cont">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search" placeholder="Search here..." {{on "keyup" this.handleSearch}}>
+            </div>
+            <button {{on "click" this.bulkDelete}} class="btn-cd dlt" {{on-key 'Delete' this.bulkDelete}}>
+                <i class="fa-regular fa-trash-can"></i> Delete Selected
+            </button>
+            <LinkTo @route="students.add" class="btn-cd add" {{on-key 'alt+a' this.addStud}}>
                 <i class="fa-solid fa-user-plus"></i> Add Student
             </LinkTo>
         </div>
     </div>
-
-    <StudentList @students={{this.students.students}} @deleteRow={{this.deleteRow}} @editRow={{this.editRow}} />
+    <StudentList @students={{this.students.filteredStudents}} @deleteRow={{this.deleteRow}} @editRow={{this.editRow}} @toggleSelectAll={{this.toggleSelectAll}} @selectAll={{this.selectAll}} />
 </div>
-
-{{#if this.isFormVisible}}
-<StudentForm @editStudent={{this.editStudent}} @students={{this.students.students}} @saveStudent={{this.saveStudent}}
-    @updateStudents={{this.updateStudents}} @closeForm={{this.closeForm}} />
-{{/if}}
-
-
-{{outlet}}

@@ -1,9 +1,4 @@
-<div id="overlay"></div>
-
-<StudentForm 
-  @editStudent={{this.model}}
-  @students={{this.students.students}}  
-  @saveStudent={{this.saveStudent}}
-  @updateStudents={{this.updateStudents}} 
-  @closeForm={{this.closeForm}}
-/>
+<div {{on-click-outside this.closeForm}}>
+  <StudentForm @editStudent={{this.model}} @students={{this.students.students}} @saveStudent={{this.saveStudent}}
+    @updateStudents={{this.updateStudents}} @closeForm={{this.closeForm}} />
+</div>

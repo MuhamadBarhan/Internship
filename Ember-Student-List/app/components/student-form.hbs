@@ -1,15 +1,45 @@
-<div id="formCont">
-    <span id="close-btn" {{on "click" @closeForm}}>
-        <i class="fa-solid fa-circle-xmark"></i>
-    </span>
+<div id="formCont" {{on-key 'Enter' this.handleEnter}} {{on-key 'Escape' @closeForm}}>
+  <h5>{{if this.isEditing "Edit Student" "Add New Student"}}</h5>
 
-    <input type="text" value={{this.name}} {{on "input" this.updateName}} placeholder="Enter Name">
-    <input type="text" value={{this.reg}} {{on "input" this.updateReg}} placeholder="Enter Reg No">
-    <input type="text" value={{this.dept}} {{on "input" this.updateDept}} placeholder="Enter Department">
-    <input type="text" value={{this.clg}} {{on "input" this.updateClg}} placeholder="Enter College">
+  <span id="close-btn" {{on "click" @closeForm}}>
+    <i class="fa-solid fa-xmark"></i>
+  </span>
 
-    <div class="decision">
-        <button class="btn-cd cancel" type="button" {{on "click" @closeForm}}>Cancel</button>
-        <button class="btn-cd" type="button" {{on "click" this.saveStudent}}>{{if this.isEditing "Update" "Create"}}</button>
-    </div>
+  <label for="name">Name</label>
+  <input id="name" type="text" value={{this.name}} {{on "input" this.updateName}} placeholder="Enter Name">
+
+  <label for="reg">Registration Number</label>
+  <input id="reg" type="number" value={{this.reg}} {{on "input" this.updateReg}} placeholder="Enter Reg No">
+
+  <label for="clg">College</label>
+  <input id="clg" type="text" value={{this.clg}} {{on "input" this.updateClg}} placeholder="Enter College">
+
+  <label for="dept">Department</label>
+  <PowerSelect
+    @options={{this.departments}}
+    @selected={{this.dept}}
+    @searchEnabled={{true}}
+    @onChange={{this.updateDept}}
+    @placeholder="Select dept..."
+    @triggerId="dept" as |department|>
+    {{department}}
+  </PowerSelect>
+
+  <label for="skills">Skills</label>
+  <PowerSelectMultiple
+    @options={{this.skills}}
+    @selected={{this.selectedSkills}}
+    @searchEnabled={{true}}
+    @onChange={{this.updateSkills}}
+    @placeholder="Select skills..."
+    @triggerId="skills" as |skill|>
+    {{skill}}
+  </PowerSelectMultiple>
+
+  <div class="decision">
+    <button class="btn-cd cancel" type="button" {{on "click" @closeForm}}>Cancel</button>
+    <button class="btn-cd uc" type="button" {{on "click" this.saveStudent}}>
+      {{if this.isEditing "Update" "Create"}}
+    </button>
+  </div>
 </div>
