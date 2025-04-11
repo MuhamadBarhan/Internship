@@ -1,8 +1,25 @@
+<nav class="navbar">
+    <div class="navbar-title"><i class="fa-solid fa-graduation-cap"></i>Student Management System</div>
+    <div class="toggle-profile">
+        <button id="theme-toggle-btn" {{on "click" this.toggleTheme}}>
+            {{#if this.isDarkMode}}
+            <i class="bi bi-sun"></i>
+            {{else}}
+            <i class="bi bi-moon"></i>
+            {{/if}}
+        </button>
+        <div class="circle">A</div>
+    </div>
+
+</nav>
+
+
 {{#each this.flashMessages.queue as |flash|}}
 <FlashMessage @flash={{flash}} @messageStyle='bootstrap' />
 {{/each}}
 
-<div class="{{if (or (eq this.currentRoute 'students.add') (eq this.currentRoute 'students.edit')) 'full-screen-outlet' ''}}">
+<div
+    class="{{if (or (eq this.currentRoute 'students.add') (eq this.currentRoute 'students.edit')) 'full-screen-outlet' ''}}">
     {{liquid-outlet}}
 </div>
 
@@ -23,5 +40,6 @@
             </LinkTo>
         </div>
     </div>
-    <StudentList @students={{this.students.filteredStudents}} @deleteRow={{this.deleteRow}} @editRow={{this.editRow}} @toggleSelectAll={{this.toggleSelectAll}} @selectAll={{this.selectAll}} />
+    <StudentList @students={{this.students.filteredStudents}} @deleteRow={{this.deleteRow}} @editRow={{this.editRow}}
+        @toggleSelectAll={{this.toggleSelectAll}} @selectAll={{this.selectAll}} />
 </div>

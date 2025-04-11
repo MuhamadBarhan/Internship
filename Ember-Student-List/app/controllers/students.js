@@ -12,6 +12,7 @@ export default class StudentsController extends Controller {
     @tracked isFormVisible = false;
     @tracked editStudent = null;
     @tracked selectAll = false;
+    @tracked isDarkMode = false;
 
     get currentRoute() {
         return this.router.currentRouteName;
@@ -65,10 +66,17 @@ export default class StudentsController extends Controller {
 
     @action deleteRow(reg) {
         this.students.filteredStudents = this.students.filteredStudents.filter(student => student.reg !== reg);
+        this.flashMessages.success('Deleted');
     }
 
     @action editRow(reg) {
         this.editStudent = this.students.filteredStudents.find(student => student.reg === reg);
         this.router.transitionTo('students.edit', reg);
+    }
+
+    @action toggleTheme() {
+        this.isDarkMode = !this.isDarkMode;
+        const newTheme = this.isDarkMode ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
     }
 }

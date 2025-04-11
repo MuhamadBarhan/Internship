@@ -8,7 +8,7 @@ export default class StudentsEditController extends Controller {
     @service flashMessages;
 
     @action updateStudents(updatedStudents) {
-        this.students.filteredStudents = updatedStudents; 
+        this.students.filteredStudents = updatedStudents;
         this.router.transitionTo('students');
         this.flashMessages.success("Student updated succcessfully!");
     }    

@@ -1,4 +1,4 @@
-<div id="formCont" {{on-key 'Enter' this.handleEnter}} {{on-key 'Escape' @closeForm}} {{on-click-outside @closeForm}}>
+<form id="formCont" {{on-key 'Enter' this.handleEnter}} {{on-key 'Escape' @closeForm}} {{on-click-outside @closeForm}}>
   <h5>{{if this.isEditing "Edit Student" "Add New Student"}}</h5>
 
   <span id="close-btn" {{on "click" @closeForm}}>
@@ -6,40 +6,30 @@
   </span>
 
   <label for="name">Name</label>
-  <input id="name" type="text" value={{this.name}} {{on "input" this.updateName}} placeholder="Enter Name">
+  <input id="name" type="text" value={{this.name}} {{on "input" this.updateName}} placeholder="Enter Name" required>
 
   <label for="reg">Registration Number</label>
-  <input id="reg" type="number" value={{this.reg}} {{on "input" this.updateReg}} placeholder="Enter Reg No">
+  <input id="reg" type="number" value={{this.reg}} {{on "input" this.updateReg}} placeholder="Enter Reg No" required>
 
   <label for="clg">College</label>
-  <input id="clg" type="text" value={{this.clg}} {{on "input" this.updateClg}} placeholder="Enter College">
+  <input id="clg" type="text" value={{this.clg}} {{on "input" this.updateClg}} placeholder="Enter College" required>
 
   <label for="dept">Department</label>
-  <PowerSelect
-    @options={{this.departments}}
-    @selected={{this.dept}}
-    @searchEnabled={{true}}
-    @onChange={{this.updateDept}}
-    @placeholder="Select dept..."
-    @triggerId="dept" as |department|>
+  <PowerSelect @options={{this.departments}} @selected={{this.dept}} @searchEnabled={{true}}
+    @onChange={{this.updateDept}} @placeholder="Select dept..." @triggerId="dept" @required={{true}} as |department|>
     {{department}}
   </PowerSelect>
 
   <label for="skills">Skills</label>
-  <PowerSelectMultiple
-    @options={{this.skills}}
-    @selected={{this.selectedSkills}}
-    @searchEnabled={{true}}
-    @onChange={{this.updateSkills}}
-    @placeholder="Select skills..."
-    @triggerId="skills" as |skill|>
+  <PowerSelectMultiple @options={{this.skills}} @selected={{this.selectedSkills}} @searchEnabled={{true}}
+    @onChange={{this.updateSkills}} @placeholder="Select skills..." @triggerId="skills" @required={{true}} as |skill|>
     {{skill}}
   </PowerSelectMultiple>
 
   <div class="decision">
     <button class="btn-cd cancel" type="button" {{on "click" @closeForm}}>Cancel</button>
-    <button class="btn-cd uc" type="button" {{on "click" this.saveStudent}}>
-      {{if this.isEditing "Update" "Create"}}
+    <button class="btn-cd uc" type="submit" {{on "click" this.saveStudent}}>
+      {{if this.isEditing "Update" "Add"}}
     </button>
   </div>
-</div>
+</form>
