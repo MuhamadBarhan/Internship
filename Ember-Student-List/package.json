@@ -93,6 +93,7 @@
     "edition": "octane"
   },
   "dependencies": {
+    "@ember/string": "^4.0.1",
     "bootstrap": "^5.3.3"
   }
 }

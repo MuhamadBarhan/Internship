@@ -5,12 +5,11 @@
             {{#if this.isDarkMode}}
             <i class="bi bi-sun"></i>
             {{else}}
-            <i class="bi bi-moon"></i>
+            <i class="bi bi-moon-stars"></i>
             {{/if}}
         </button>
-        <div class="circle">A</div>
+        <i class="bi bi-person-circle"></i>
     </div>
-
 </nav>
 
 
@@ -23,11 +22,71 @@
     {{liquid-outlet}}
 </div>
 
-
 <div class="student-container">
     <div class="search-dlt-cont">
-        <span>Student List</span>
+        <div><span>Student List</span></div>
+
         <div class="search-cd-cont">
+            <button class="btn-filter" {{on "click" this.toggleCustomize}}>
+                <i class="bi bi-layout-sidebar-inset"></i> Customize Columns
+            </button>
+            {{#if this.isCustomizeVisible}}
+            <div class="customize-column" {{on-click-outside this.toggleCustomize}}>
+                <span {{on "click" this.toggleCustomize}} {{on-key 'Escape' this.toggleCustomize}}><i
+                        class="fa-solid fa-xmark"></i></span>
+                <div class="filter-section">
+                    <strong>Columns</strong>
+                    <div class="custom-column">
+                        {{#each (array "reg" "name" "dept" "skills" "college") as |col|}}
+                        <label>
+                            <input type="checkbox" checked={{this.isColumnVisible col}} {{on "change" (fn
+                                this.toggleColumnVisibility col)}} />
+                            {{capitalize col}}
+                        </label>
+                        {{/each}}
+                    </div>
+                </div>
+
+            </div>
+            {{/if}}
+
+            <button class="btn-filter" {{on "click" this.toggleFilter}}>
+                <i class="bi bi-funnel"></i> Filters
+            </button>
+            {{#if this.isFilterVisible}}
+            <div class="advanced-filters" {{on-click-outside this.toggleFilter}}>
+                <span {{on "click" this.toggleFilter}} {{on-key 'Escape' this.toggleFilter}}><i
+                        class="fa-solid fa-xmark"></i></span>
+                <div class="filter-section">
+                    <strong>Departments</strong>
+                    <div class="filter-dept">
+                        {{#each this.availableDepartments as |dept|}}
+                        <label>
+                            <input type="checkbox" value={{dept}} {{on "change" this.updateDeptFilter}}
+                                checked={{this.isDeptChecked dept}} />
+                            {{dept}}
+                        </label>
+                        {{/each}}
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <strong>Skills:</strong>
+                    <div class="filter-skill">
+                        {{#each this.availableSkills as |skill|}}
+                        <label>
+                            <input type="checkbox" value={{skill}} {{on "change" this.updateSkillsFilter}}
+                                checked={{includes this.filter.skills skill}} />
+                            {{skill}}
+                        </label>
+                        {{/each}}
+                    </div>
+                </div>
+                <button type="button" {{on "click" this.applyFilter}} class="btn-cd filter">Apply Filters</button>
+                <button type="button" {{on "click" this.clearAllFilters}} class="btn-cd cancel">Clear All</button>
+            </div>
+            {{/if}}
+
             <div class="search-cont">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="search" placeholder="Search here..." {{on "keyup" this.handleSearch}}>
@@ -41,5 +100,6 @@
         </div>
     </div>
     <StudentList @students={{this.students.filteredStudents}} @deleteRow={{this.deleteRow}} @editRow={{this.editRow}}
-        @toggleSelectAll={{this.toggleSelectAll}} @selectAll={{this.selectAll}} />
+        @toggleSelectAll={{this.toggleSelectAll}} @selectAll={{this.selectAll}} @sortByName={{this.sortByName}}
+        @isAscending={{this.isAscending}} @visibleColumns={{this.visibleColumns}}/>
 </div>

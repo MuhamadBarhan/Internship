@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { service } from '@ember/service';
+import { htmlSafe } from '@ember/template';
 
 export default class StudentFormComponent extends Component {
     @service flashMessages;
@@ -41,7 +42,7 @@ export default class StudentFormComponent extends Component {
     @action saveStudent() {
 
         if (!this.name || !this.reg || !this.dept || !this.clg || this.selectedSkills.length === 0) {
-            this.flashMessages.warning("Fill all the details");
+            this.flashMessages.warning(htmlSafe('<i class="bi bi-exclamation-triangle-fill"></i> Fill all the details'));
             return;
         }
 

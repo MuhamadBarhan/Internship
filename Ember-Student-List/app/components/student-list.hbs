@@ -1,48 +1,43 @@
 <div class="table-container">
-    <table id="table">
-        <thead>
-            <tr>
-                <th><input type="checkbox" {{on "change" @toggleSelectAll}} checked={{@selectAll}} /></th>
-                <th>Reg No</th>
-                <th>Name</th>
-                <th>Department</th>
-                <th>Skills</th>
-                <th>College</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-  {{#if (and @students (gt @students.length 0))}}
-    <VerticalCollection
-      @estimateHeight={{60}}
-      @items={{@students}}
-      @key="reg"
-      @containerSelector=".table-container"
-      as |student|
-    >
+  <table id="table">
+    <thead>
       <tr>
-        <td><input type="checkbox" /></td>
-        <td>{{student.reg}}</td>
-        <td>{{student.name}}</td>
-        <td>{{student.dept}}</td>
-        <td>{{join-array student.skills ", "}}</td>
-        <td>{{student.clg}}</td>
-        <td>
-          <button class="btn-ed edit" type="button" {{on "click" (fn @editRow student.reg)}}>
-            <i class="fa-solid fa-pen-to-square"></i>
-          </button>
-          <button class="btn-ed delete" type="button" {{on "click" (fn @deleteRow student.reg)}}>
-            <i class="fa-solid fa-trash"></i>
-          </button>
-        </td>
+        <th><input type="checkbox" {{on "change" @toggleSelectAll}} checked={{@selectAll}} /></th>
+         {{#if (includes @visibleColumns "reg")}}<th>Reg No</th>{{/if}}
+         {{#if (includes @visibleColumns "name")}}<th>Name <i class={{if @isAscending "bi bi-sort-alpha-down" "bi bi-sort-alpha-down-alt" }} {{on "click" @sortByName}}></i></th>{{/if}}
+         {{#if (includes @visibleColumns "dept")}}<th>Department</th>{{/if}}
+         {{#if (includes @visibleColumns "skills")}}<th>Skills</th>{{/if}}
+         {{#if (includes @visibleColumns "college")}}<th>College</th>{{/if}}
+        <th>Action</th>
       </tr>
-    </VerticalCollection>
-  {{else}}
-    <tr>
-      <td colspan="6" style="text-align: center;">No students found</td>
-    </tr>
-  {{/if}}
-</tbody>
+    </thead>
+    <tbody>
+      {{#if (and @students (gt @students.length 0))}}
+      <VerticalCollection @estimateHeight={{60}} @items={{@students}} @key="reg" @containerSelector=".table-container"
+        as |student|>
+        <tr>
+          <td><input type="checkbox" /></td>
+           {{#if (includes @visibleColumns "reg")}}<td>{{student.reg}}</td>{{/if}}
+           {{#if (includes @visibleColumns "name")}}<td>{{student.name}}</td>{{/if}}
+           {{#if (includes @visibleColumns "dept")}}<td>{{student.dept}}</td>{{/if}}
+           {{#if (includes @visibleColumns "skills")}}<td>{{join-array student.skills ", "}}</td>{{/if}}
+           {{#if (includes @visibleColumns "college")}}<td>{{student.clg}}</td>{{/if}}
+          <td>
+            <button class="btn-ed edit" type="button" {{on "click" (fn @editRow student.reg)}}>
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button class="btn-ed delete" type="button" {{on "click" (fn @deleteRow student.reg)}}>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </VerticalCollection>
+      {{else}}
+      <tr>
+        <td colspan="6" style="text-align: center;">No students found</td>
+      </tr>
+      {{/if}}
+    </tbody>
 
-    </table>
+  </table>
 </div>

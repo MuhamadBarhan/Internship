@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { service } from '@ember/service';
 import { action } from '@ember/object';
+import { htmlSafe } from '@ember/template';
 
 export default class StudentsEditController extends Controller {
     @service router;
@@ -10,7 +11,7 @@ export default class StudentsEditController extends Controller {
     @action updateStudents(updatedStudents) {
         this.students.filteredStudents = updatedStudents;
         this.router.transitionTo('students');
-        this.flashMessages.success("Student updated succcessfully!");
+        this.flashMessages.success(htmlSafe('<i class="bi bi-check-circle-fill"></i> Student updated succcessfully!'));
     }    
 
     @action closeForm() {
