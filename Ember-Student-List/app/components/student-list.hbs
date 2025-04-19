@@ -3,25 +3,44 @@
     <thead>
       <tr>
         <th><input type="checkbox" {{on "change" @toggleSelectAll}} checked={{@selectAll}} /></th>
-         {{#if (includes @visibleColumns "reg")}}<th>Reg No</th>{{/if}}
-         {{#if (includes @visibleColumns "name")}}<th>Name <i class={{if @isAscending "bi bi-sort-alpha-down" "bi bi-sort-alpha-down-alt" }} {{on "click" @sortByName}}></i></th>{{/if}}
-         {{#if (includes @visibleColumns "dept")}}<th>Department</th>{{/if}}
-         {{#if (includes @visibleColumns "skills")}}<th>Skills</th>{{/if}}
-         {{#if (includes @visibleColumns "college")}}<th>College</th>{{/if}}
+        {{#each @items as |item|}}
+        {{#if (includes @visibleColumns item.key)}}
+        <th class="resizable" data-key={{item.key}} {{did-insert @makeResizable}}>
+          {{item.label}}
+
+          {{#if (or (eq item.key "name") (eq item.key "reg") (eq item.key "dept") (eq item.key "clg") (eq item.key
+          "skills"))}}
+          <i class="bi bi-arrow-down-up" {{on "click" (fn @sortByKey item.key)}}></i>
+          {{/if}}
+
+          <span class="resizer"></span>
+        </th>
+        {{/if}}
+        {{/each}}
+
         <th>Action</th>
       </tr>
     </thead>
+
+
     <tbody>
       {{#if (and @students (gt @students.length 0))}}
       <VerticalCollection @estimateHeight={{60}} @items={{@students}} @key="reg" @containerSelector=".table-container"
         as |student|>
         <tr>
           <td><input type="checkbox" /></td>
-           {{#if (includes @visibleColumns "reg")}}<td>{{student.reg}}</td>{{/if}}
-           {{#if (includes @visibleColumns "name")}}<td>{{student.name}}</td>{{/if}}
-           {{#if (includes @visibleColumns "dept")}}<td>{{student.dept}}</td>{{/if}}
-           {{#if (includes @visibleColumns "skills")}}<td>{{join-array student.skills ", "}}</td>{{/if}}
-           {{#if (includes @visibleColumns "college")}}<td>{{student.clg}}</td>{{/if}}
+          {{#each @items as |item|}}
+          {{#if (includes @visibleColumns item.key)}}
+          <td>
+            {{#if (eq item.key "skills")}}
+            {{join-array student.skills ", "}}
+            {{else}}
+            {{get student item.key}}
+            {{/if}}
+          </td>
+          {{/if}}
+          {{/each}}
+
           <td>
             <button class="btn-ed edit" type="button" {{on "click" (fn @editRow student.reg)}}>
               <i class="fa-solid fa-pen-to-square"></i>

@@ -2,70 +2,81 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 export default class StudentsService extends Service {
-    @tracked students = [
-        { name: "Aakash", reg: 962821205001, dept: "IT", clg: "UCEN", skills: ["JavaScript", "React"] },
-        { name: "Abishek", reg: 962821205002, dept: "IT", clg: "UCEN", skills: ["Spring Boot", "Flutter"] },
-        { name: "Ajay", reg: 962821205003, dept: "CSE", clg: "UCEN", skills: ["Spring Boot", "MySQL"] },
-        { name: "Arun", reg: 962821205004, dept: "IT", clg: "UCEN", skills: ["React", "Spring Boot"] },
-        { name: "Aswin", reg: 962821205005, dept: "IT", clg: "UCEN", skills: ["Node.js", "MySQL"] },
-        { name: "Bala", reg: 962821205006, dept: "CSE", clg: "UCEN", skills: ["CSS", "Node.js"] },
-        { name: "Bhavesh", reg: 962821205007, dept: "IT", clg: "UCEN", skills: ["Flutter", "Spring Boot"] },
-        { name: "Charan", reg: 962821205008, dept: "CSE", clg: "UCEN", skills: ["CSS", "MySQL"] },
-        { name: "Deepak", reg: 962821205009, dept: "IT", clg: "UCEN", skills: ["JavaScript", "Spring Boot"] },
-        { name: "Dev", reg: 962821205010, dept: "IT", clg: "UCEN", skills: ["React", "HTML"] },
-        { name: "Dinesh", reg: 962821205011, dept: "IT", clg: "UCEN", skills: ["JavaScript", "HTML"] },
-        { name: "Ethan", reg: 962821205012, dept: "CSE", clg: "UCEN", skills: ["Node.js", "JavaScript"] },
-        { name: "Elavarasan", reg: 962821205013, dept: "IT", clg: "UCEN", skills: ["HTML", "React"] },
-        { name: "Faiz", reg: 962821205014, dept: "IT", clg: "UCEN", skills: ["Spring Boot", "CSS"] },
-        { name: "Gokul", reg: 962821205015, dept: "CSE", clg: "UCEN", skills: ["MySQL", "Flutter"] },
-        { name: "Guhan", reg: 962821205016, dept: "CSE", clg: "UCEN", skills: ["Flutter", "React"] },
-        { name: "Hari", reg: 962821205017, dept: "CSE", clg: "UCEN", skills: ["CSS", "HTML"] },
-        { name: "Harish", reg: 962821205018, dept: "IT", clg: "UCEN", skills: ["Node.js", "CSS"] },
-        { name: "Harsha", reg: 962821205019, dept: "IT", clg: "UCEN", skills: ["MySQL", "HTML"] },
-        { name: "Imran", reg: 962821205020, dept: "CSE", clg: "UCEN", skills: ["Node.js", "JavaScript"] },
-        { name: "Irfan", reg: 962821205021, dept: "CSE", clg: "UCEN", skills: ["Spring Boot", "JavaScript"] },
-        { name: "Jagan", reg: 962821205022, dept: "IT", clg: "UCEN", skills: ["React", "Spring Boot"] },
-        { name: "Jeeva", reg: 962821205023, dept: "IT", clg: "UCEN", skills: ["HTML", "Node.js"] },
-        { name: "Karthik", reg: 962821205024, dept: "IT", clg: "UCEN", skills: ["Flutter", "React"] },
-        { name: "Keerthi", reg: 962821205025, dept: "IT", clg: "UCEN", skills: ["React", "CSS"] },
-        { name: "Kiran", reg: 962821205026, dept: "IT", clg: "UCEN", skills: ["CSS", "Flutter"] },
-        { name: "Kavin", reg: 962821205027, dept: "CSE", clg: "UCEN", skills: ["Spring Boot", "React"] },
-        { name: "Lalith", reg: 962821205028, dept: "CSE", clg: "UCEN", skills: ["HTML", "MySQL"] },
-        { name: "Lokesh", reg: 962821205029, dept: "CSE", clg: "UCEN", skills: ["Flutter", "MySQL"] },
-        { name: "Manoj", reg: 962821205030, dept: "IT", clg: "UCEN", skills: ["JavaScript", "React"] },
-        { name: "Muhamad", reg: 962821205031, dept: "IT", clg: "UCEN", skills: ["JavaScript", "React"] },
-        { name: "Naveen", reg: 962821205032, dept: "CSE", clg: "UCEN", skills: ["Spring Boot", "Node.js"] },
-        { name: "Nithin", reg: 962821205033, dept: "IT", clg: "UCEN", skills: ["Node.js", "CSS"] },
-        { name: "Omprakash", reg: 962821205034, dept: "IT", clg: "UCEN", skills: ["CSS", "HTML"] },
-        { name: "Pranav", reg: 962821205035, dept: "CSE", clg: "UCEN", skills: ["MySQL", "JavaScript"] },
-        { name: "Praveen", reg: 962821205036, dept: "CSE", clg: "UCEN", skills: ["MySQL", "HTML"] },
-        { name: "Raj", reg: 962821205037, dept: "IT", clg: "UCEN", skills: ["React", "Flutter"] },
-        { name: "Ragul", reg: 962821205038, dept: "IT", clg: "UCEN", skills: ["Node.js", "Flutter"] },
-        { name: "Ruban", reg: 962821205039, dept: "CSE", clg: "UCEN", skills: ["HTML", "CSS"] },
-        { name: "Sanjay", reg: 962821205040, dept: "IT", clg: "UCEN", skills: ["Node.js", "Spring Boot"] },
-        { name: "Sathish", reg: 962821205041, dept: "IT", clg: "UCEN", skills: ["JavaScript", "Node.js"] },
-        { name: "Suriya", reg: 962821205042, dept: "IT", clg: "UCEN", skills: ["HTML", "JavaScript"] },
-        { name: "Surya", reg: 962821205043, dept: "CSE", clg: "UCEN", skills: ["React", "Flutter"] },
-        { name: "Tharun", reg: 962821205044, dept: "CSE", clg: "UCEN", skills: ["HTML", "CSS"] },
-        { name: "Udhay", reg: 962821205045, dept: "IT", clg: "UCEN", skills: ["JavaScript", "MySQL"] },
-        { name: "Venkatesh", reg: 962821205046, dept: "CSE", clg: "UCEN", skills: ["React", "Flutter"] },
-        { name: "Vijay", reg: 962821205047, dept: "IT", clg: "UCEN", skills: ["Flutter", "MySQL"] },
-        { name: "Vimal", reg: 962821205048, dept: "CSE", clg: "UCEN", skills: ["React", "CSS"] },
-        { name: "Yogesh", reg: 962821205049, dept: "IT", clg: "UCEN", skills: ["Spring Boot", "CSS"] },
-        { name: "Zaid", reg: 962821205050, dept: "CSE", clg: "UCEN", skills: ["Node.js", "HTML"] },
-      ];            
+  @tracked students = [
+    { name: "Faiz", reg: 963021203014, dept: "MECH", clg: "CIT", skills: ["Spring Boot", "CSS"] },
+    { name: "Raj", reg: 963021201037, dept: "IT", clg: "CIT", skills: ["React", "Flutter"] },
+    { name: "Dinesh", reg: 963121201011, dept: "IT", clg: "MIT", skills: ["JavaScript", "HTML"] },
+    { name: "Bhavesh", reg: 963021201007, dept: "IT", clg: "CIT", skills: ["Flutter", "Spring Boot"] },
+    { name: "Harsha", reg: 962821204019, dept: "ECE", clg: "UCEN", skills: ["MySQL", "HTML"] },
+    { name: "Ruban", reg: 963021202039, dept: "CSE", clg: "CIT", skills: ["HTML", "CSS"] },
+    { name: "Sanjay", reg: 963121201040, dept: "IT", clg: "MIT", skills: ["Node.js", "Spring Boot"] },
+    { name: "Guhan", reg: 963121203016, dept: "MECH", clg: "MIT", skills: ["Flutter", "React"] },
+    { name: "Jagan", reg: 962821201022, dept: "IT", clg: "UCEN", skills: ["React", "Spring Boot"] },
+    { name: "Charan", reg: 963121202008, dept: "CSE", clg: "MIT", skills: ["CSS", "MySQL"] },
+    { name: "Vijay", reg: 962821204047, dept: "ECE", clg: "UCEN", skills: ["Flutter", "MySQL"] },
+    { name: "Manoj", reg: 962821201030, dept: "IT", clg: "UCEN", skills: ["JavaScript", "React"] },
+    { name: "Kiran", reg: 962821203026, dept: "MECH", clg: "UCEN", skills: ["CSS", "Flutter"] },
+    { name: "Surya", reg: 963121203043, dept: "MECH", clg: "MIT", skills: ["React", "Flutter"] },
+    { name: "Dev", reg: 963021201010, dept: "IT", clg: "CIT", skills: ["React", "HTML"] },
+    { name: "Aswin", reg: 962821203005, dept: "MECH", clg: "UCEN", skills: ["Node.js", "MySQL"] },
+    { name: "Yogesh", reg: 962821203049, dept: "MECH", clg: "UCEN", skills: ["Spring Boot", "CSS"] },
+    { name: "Lokesh", reg: 963021204029, dept: "ECE", clg: "CIT", skills: ["Flutter", "MySQL"] },
+    { name: "Kavin", reg: 963121202027, dept: "CSE", clg: "MIT", skills: ["Spring Boot", "React"] },
+    { name: "Omprakash", reg: 962821203034, dept: "MECH", clg: "UCEN", skills: ["CSS", "HTML"] },
+    { name: "Ethan", reg: 962821202012, dept: "CSE", clg: "UCEN", skills: ["Node.js", "JavaScript"] },
+    { name: "Ajay", reg: 963021204003, dept: "ECE", clg: "CIT", skills: ["Spring Boot", "MySQL"] },
+    { name: "Zaid", reg: 963021201050, dept: "IT", clg: "CIT", skills: ["Node.js", "HTML"] },
+    { name: "Abishek", reg: 962821202002, dept: "CSE", clg: "UCEN", skills: ["Spring Boot", "Flutter"] },
+    { name: "Irfan", reg: 963021202021, dept: "CSE", clg: "CIT", skills: ["Spring Boot", "JavaScript"] },
+    { name: "Hari", reg: 963021202017, dept: "CSE", clg: "CIT", skills: ["CSS", "HTML"] },
+    { name: "Elavarasan", reg: 962821201013, dept: "IT", clg: "UCEN", skills: ["HTML", "React"] },
+    { name: "Nithin", reg: 963021201033, dept: "IT", clg: "CIT", skills: ["Node.js", "CSS"] },
+    { name: "Lalith", reg: 963021202028, dept: "CSE", clg: "CIT", skills: ["HTML", "MySQL"] },
+    { name: "Sathish", reg: 962821201041, dept: "IT", clg: "UCEN", skills: ["JavaScript", "Node.js"] },
+    { name: "Udhay", reg: 963121202045, dept: "CSE", clg: "MIT", skills: ["JavaScript", "MySQL"] },
+    { name: "Keerthi", reg: 962821203025, dept: "MECH", clg: "UCEN", skills: ["React", "CSS"] },
+    { name: "Deepak", reg: 962821201009, dept: "IT", clg: "UCEN", skills: ["JavaScript", "Spring Boot"] },
+    { name: "Jeeva", reg: 962821201023, dept: "IT", clg: "UCEN", skills: ["HTML", "Node.js"] },
+    { name: "Aakash", reg: 962821201001, dept: "IT", clg: "UCEN", skills: ["JavaScript", "React"] },
+    { name: "Praveen", reg: 963121204036, dept: "ECE", clg: "MIT", skills: ["MySQL", "HTML"] },
+    { name: "Karthik", reg: 963121201024, dept: "IT", clg: "MIT", skills: ["Flutter", "React"] },
+    { name: "Muhamad", reg: 962821201031, dept: "IT", clg: "UCEN", skills: ["JavaScript", "React"] },
+    { name: "Harish", reg: 962821201018, dept: "IT", clg: "UCEN", skills: ["Node.js", "CSS"] },
+    { name: "Arun", reg: 963121201004, dept: "IT", clg: "MIT", skills: ["React", "Spring Boot"] },
+    { name: "Pranav", reg: 962821202035, dept: "CSE", clg: "UCEN", skills: ["MySQL", "JavaScript"] },
+    { name: "Venkatesh", reg: 963021203046, dept: "MECH", clg: "CIT", skills: ["React", "Flutter"] },
+    { name: "Imran", reg: 963121202020, dept: "CSE", clg: "MIT", skills: ["Node.js", "JavaScript"] },
+    { name: "Gokul", reg: 962821204015, dept: "ECE", clg: "UCEN", skills: ["MySQL", "Flutter"] },
+    { name: "Naveen", reg: 963121202032, dept: "CSE", clg: "MIT", skills: ["Spring Boot", "Node.js"] },
+    { name: "Vimal", reg: 963121202048, dept: "CSE", clg: "MIT", skills: ["React", "CSS"] },
+    { name: "Bala", reg: 962821202006, dept: "CSE", clg: "UCEN", skills: ["CSS", "Node.js"] },
+    { name: "Tharun", reg: 962821204044, dept: "ECE", clg: "UCEN", skills: ["HTML", "CSS"] },
+    { name: "Ragul", reg: 962821203038, dept: "MECH", clg: "UCEN", skills: ["Node.js", "Flutter"] }
+  ];
+  
+  
 
     @tracked filteredStudents = this.students;
 
-    searchStudents(query) {
+    searchStudents(query, searchColumns = ['name', 'dept', 'clg']) {
         query = query.toLowerCase();
+        
         this.filteredStudents = this.students.filter(student => {
-            const reg = student.reg ? student.reg.toString().toLowerCase() : '';
-            return student.name.toLowerCase().includes(query) ||
-                reg.includes(query) || 
-                student.dept.toLowerCase().includes(query) ||
-                student.clg.toLowerCase().includes(query);
+          return searchColumns.some(column => {
+            switch(column) {
+              case 'reg':
+                return student.reg.toString().toLowerCase().includes(query);
+              case 'skills':
+                return student.skills.join(' ').toLowerCase().includes(query);
+              case 'name':
+              case 'dept':
+              case 'clg':
+                return student[column]?.toLowerCase().includes(query);
+              default:
+                return false; 
+            }
+          });
         });
-    }
+      }
 
 }

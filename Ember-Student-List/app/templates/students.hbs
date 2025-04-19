@@ -32,21 +32,24 @@
             </button>
             {{#if this.isCustomizeVisible}}
             <div class="customize-column" {{on-click-outside this.toggleCustomize}}>
-                <span {{on "click" this.toggleCustomize}} {{on-key 'Escape' this.toggleCustomize}}><i
-                        class="fa-solid fa-xmark"></i></span>
-                <div class="filter-section">
-                    <strong>Columns</strong>
-                    <div class="custom-column">
-                        {{#each (array "reg" "name" "dept" "skills" "college") as |col|}}
-                        <label>
-                            <input type="checkbox" checked={{this.isColumnVisible col}} {{on "change" (fn
-                                this.toggleColumnVisibility col)}} />
-                            {{capitalize col}}
-                        </label>
-                        {{/each}}
-                    </div>
-                </div>
-
+                <span {{on "click" this.toggleCustomize}} {{on-key 'Escape' this.toggleCustomize}}
+                    class="close-modal"><i class="fa-solid fa-xmark"></i></span>
+                <strong>Columns</strong>
+                <p>Drag <i class="bi bi-list"></i> to sort columns</p>
+                <ul {{sortable-group onChange=this.reorderItems}}>
+                    {{#each this.items as |col|}}
+                    <li {{sortable-item model=col}}>
+                        <div>
+                            <label>
+                                <input type="checkbox" checked={{this.isColumnVisible col.key}} {{on "change" (fn
+                                    this.toggleColumnVisibility col.key)}} />
+                                {{capitalize col.label}}
+                            </label>
+                            <span class="handle" {{sortable-handle}}><i class="bi bi-list"></i></span>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
             </div>
             {{/if}}
 
@@ -55,7 +58,7 @@
             </button>
             {{#if this.isFilterVisible}}
             <div class="advanced-filters" {{on-click-outside this.toggleFilter}}>
-                <span {{on "click" this.toggleFilter}} {{on-key 'Escape' this.toggleFilter}}><i
+                <span {{on "click" this.toggleFilter}} {{on-key 'Escape' this.toggleFilter}} class="close-modal"><i
                         class="fa-solid fa-xmark"></i></span>
                 <div class="filter-section">
                     <strong>Departments</strong>
@@ -90,6 +93,13 @@
             <div class="search-cont">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="search" placeholder="Search here..." {{on "keyup" this.handleSearch}}>
+                <div class="power-select-wrapper">
+                    <PowerSelectMultiple @selected={{this.selectedColumnValues}} @options={{this.items}}
+                        @onChange={{this.updateSearchColumns}} @placeholder="Search by" @searchEnabled={{false}} as
+                        |option|>
+                        {{option.label}}
+                    </PowerSelectMultiple>
+                </div>
             </div>
             <button {{on "click" this.bulkDelete}} class="btn-cd dlt" {{on-key 'Delete' this.bulkDelete}}>
                 <i class="fa-regular fa-trash-can"></i> Delete Selected
@@ -99,7 +109,8 @@
             </LinkTo>
         </div>
     </div>
-    <StudentList @students={{this.students.filteredStudents}} @deleteRow={{this.deleteRow}} @editRow={{this.editRow}}
-        @toggleSelectAll={{this.toggleSelectAll}} @selectAll={{this.selectAll}} @sortByName={{this.sortByName}}
-        @isAscending={{this.isAscending}} @visibleColumns={{this.visibleColumns}}/>
+    <StudentList @items={{this.items}} @students={{this.students.filteredStudents}} @deleteRow={{this.deleteRow}}
+        @editRow={{this.editRow}} @toggleSelectAll={{this.toggleSelectAll}} @selectAll={{this.selectAll}}
+        @sortByName={{this.sortByName}} @isAscending={{this.isAscending}} @visibleColumns={{this.visibleColumns}}
+        @sortKey={{this.sortKey}} @sortByKey={{this.sortByKey}} @makeResizable={{this.makeResizable}} @generateWidthStyle={{this.generateWidthStyle}} @handleResize={{this.handleResize}}/>
 </div>

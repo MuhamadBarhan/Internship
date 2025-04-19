@@ -2,9 +2,7 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { service } from '@ember/service';
-import { task, timeout } from 'ember-concurrency';
 import { htmlSafe } from '@ember/template';
-import { computed } from '@ember/object';
 
 export default class StudentsController extends Controller {
 
@@ -15,29 +13,91 @@ export default class StudentsController extends Controller {
   @tracked editStudent = null;
   @tracked selectAll = false;
   @tracked isDarkMode = false;
+
+  @tracked sortKey = 'name';
   @tracked isAscending = true;
+
   @tracked recentlyDeletedStudents = [];
-  
-  @tracked isFilterVisible = false; 
+
+  @tracked isFilterVisible = false;
   @tracked filter = {
     depts: [],
     skills: []
   };
-  
+
   @tracked isCustomizeVisible = false;
-  @tracked visibleColumns = ['reg', 'name', 'dept', 'skills', 'college']; 
-  
-  @computed('filter.depts.[]')
+  @tracked visibleColumns = ['reg', 'name', 'dept', 'skills', 'clg'];
+
+  @tracked searchColumns = ['name'];
+  @tracked lastSearchQuery = '';
+
+  @tracked items = [
+    { key: "reg", label: "Reg No" },
+    { key: "name", label: "Name" },
+    { key: "dept", label: "Dept" },
+    { key: "skills", label: "Skills" },
+    { key: "clg", label: "College" }
+  ];
+
+
+  @action reorderItems(itemModels, draggedModel) {
+    this.items = itemModels;
+    this.lastDragged = draggedModel;
+  }
+
   get isDeptChecked() {
     return (dept) => {
       return this.filter.depts.includes(dept);
     };
   }
-  
+
   get currentRoute() {
     return this.router.currentRouteName;
   }
 
+  @action makeResizable(th) {
+    let resizer = th.querySelector('.resizer');
+    if (!resizer) return;
+  
+    const key = th.getAttribute('data-key'); // Use unique key for each column
+    const minWidth = 100;
+  
+    // Restore saved width on load
+    let savedWidth = localStorage.getItem(`col-width-${key}`);
+    if (savedWidth) {
+      th.style.width = `${savedWidth}px`;
+    }
+  
+    let startX, startWidth;
+  
+    const onMouseDown = (e) => {
+      startX = e.pageX;
+      startWidth = th.offsetWidth;
+  
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    };
+  
+    const onMouseMove = (e) => {
+      let diff = e.pageX - startX;
+      let newWidth = startWidth + diff;
+      if (newWidth < minWidth) return;
+  
+      th.style.width = `${newWidth}px`;
+    };
+  
+    const onMouseUp = () => {
+      const finalWidth = th.offsetWidth;
+      localStorage.setItem(`col-width-${key}`, finalWidth);
+  
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+  
+    resizer.addEventListener('mousedown', onMouseDown);
+  }
+  
+  
   @action toggleFilter() {
     this.isFilterVisible = !this.isFilterVisible;
   }
@@ -69,7 +129,7 @@ export default class StudentsController extends Controller {
         return false;
       }
 
-      return true; 
+      return true;
     });
     this.flashMessages.success(htmlSafe('<i class="bi bi-check-circle-fill"></i> Filters applied'));
   }
@@ -81,6 +141,7 @@ export default class StudentsController extends Controller {
     };
     this.isFilterVisible = false;
     this.students.filteredStudents = [...this.students.students];
+    this.flashMessages.success(htmlSafe('<i class="bi bi-check-circle-fill"></i> Filters cleared'));
   }
 
   @action updateDeptFilter(event) {
@@ -125,23 +186,34 @@ export default class StudentsController extends Controller {
       this.visibleColumns = [...this.visibleColumns, column];
     }
   }
-  
+
   @action isColumnVisible(column) {
     return this.visibleColumns.includes(column);
   }
-  
-  @action sortByName() {
-    const sorted = [...this.students.filteredStudents].sort((a, b) => {
-      return this.isAscending
-        ? b.name.localeCompare(a.name)
-        : a.name.localeCompare(b.name);
+
+  @action sortByKey(key) {
+    this.sortKey = key;
+    console.log(this.sortKey)
+
+    let sorted = [...this.students.filteredStudents].sort((a, b) => {
+      let aVal = a[key];
+      let bVal = b[key];
+
+      if (Array.isArray(aVal)) aVal = aVal.join(', ');
+      if (Array.isArray(bVal)) bVal = bVal.join(', ');
+
+      if (typeof aVal === 'string' && typeof bVal === 'string') {
+        return this.isAscending
+          ? aVal.localeCompare(bVal)
+          : bVal.localeCompare(aVal);
+      } else {
+        return this.isAscending ? aVal - bVal : bVal - aVal;
+      }
     });
-    console.log(this.isAscending)
 
     this.students.filteredStudents = sorted;
     this.isAscending = !this.isAscending;
   }
-
 
   @action addStud() {
     this.router.transitionTo('students.add');
@@ -156,15 +228,25 @@ export default class StudentsController extends Controller {
     });
   }
 
-  @task
-  *searchTable(event) {
-    let input = event.target.value.toLowerCase();
-    yield timeout(300);
-    this.students.searchStudents(input);
+  @action handleSearch(event) {
+    const query = event.target.value.toLowerCase();
+    this.lastSearchQuery = query;
+    this.students.searchStudents(query, this.searchColumns);
   }
 
-  @action handleSearch(event) {
-    this.searchTable.perform(event);
+  get selectedColumnValues() {
+    return this.searchColumns.map(key => {
+      return this.items.find(opt => opt.key === key);
+    }).filter(Boolean);
+  }
+
+  @action
+  updateSearchColumns(selected) {
+    this.searchColumns = selected.map(item => item.key);
+
+    if (this.lastSearchQuery) {
+      this.students.searchStudents(this.lastSearchQuery, this.searchColumns);
+    }
   }
 
   @action bulkDelete() {
