@@ -1,0 +1,1202 @@
+{
+  "items": [
+    {
+      "key": "reg",
+      "label": "Reg No"
+    },
+    {
+      "key": "name",
+      "label": "Name"
+    },
+    {
+      "key": "dept",
+      "label": "Department"
+    },
+    {
+      "key": "skills",
+      "label": "Skills"
+    },
+    {
+      "key": "clg",
+      "label": "College"
+    }
+  ],
+  "students": [
+    {
+      "name": "Faiz",
+      "reg": 963021203014,
+      "dept": "MECH",
+      "clg": "CIT",
+      "skills": [
+        "Spring Boot",
+        "CSS"
+      ],
+      "courses": [
+        {
+          "name": "Thermodynamics",
+          "score": 85,
+          "credits": 4,
+          "grade": "A-"
+        },
+        {
+          "name": "Fluid Mechanics",
+          "score": 78,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Raj",
+      "reg": 963021201037,
+      "dept": "IT",
+      "clg": "CIT",
+      "skills": [
+        "React",
+        "Flutter"
+      ],
+      "courses": [
+        {
+          "name": "Web Development",
+          "score": 90,
+          "credits": 4,
+          "grade": "A"
+        },
+        {
+          "name": "Mobile App Dev",
+          "score": 88,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Dinesh",
+      "reg": 963121201011,
+      "dept": "IT",
+      "clg": "MIT",
+      "skills": [
+        "JavaScript",
+        "HTML"
+      ],
+      "courses": [
+        {
+          "name": "Data Structures",
+          "score": 82,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Algorithms",
+          "score": 79,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Bhavesh",
+      "reg": 963021201007,
+      "dept": "IT",
+      "clg": "CIT",
+      "skills": [
+        "Flutter",
+        "Spring Boot"
+      ],
+      "courses": [
+        {
+          "name": "Mobile App Dev",
+          "score": 92,
+          "credits": 4,
+          "grade": "A"
+        },
+        {
+          "name": "Web Services",
+          "score": 85,
+          "credits": 3,
+          "grade": "A-"
+        }
+      ]
+    },
+    {
+      "name": "Harsha",
+      "reg": 962821204019,
+      "dept": "ECE",
+      "clg": "UCEN",
+      "skills": [
+        "MySQL",
+        "HTML"
+      ],
+      "courses": [
+        {
+          "name": "Digital Electronics",
+          "score": 88,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Signals & Systems",
+          "score": 76,
+          "credits": 3,
+          "grade": "B-"
+        }
+      ]
+    },
+    {
+      "name": "Ruban",
+      "reg": 963021202039,
+      "dept": "CSE",
+      "clg": "CIT",
+      "skills": [
+        "HTML",
+        "CSS"
+      ],
+      "courses": [
+        {
+          "name": "Computer Networks",
+          "score": 84,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Operating Systems",
+          "score": 81,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Sanjay",
+      "reg": 963121201040,
+      "dept": "IT",
+      "clg": "MIT",
+      "skills": [
+        "Node.js",
+        "Spring Boot"
+      ],
+      "courses": [
+        {
+          "name": "Web Development",
+          "score": 89,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Cloud Computing",
+          "score": 83,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Guhan",
+      "reg": 963121203016,
+      "dept": "MECH",
+      "clg": "MIT",
+      "skills": [
+        "Flutter",
+        "React"
+      ],
+      "courses": [
+        {
+          "name": "Machine Design",
+          "score": 77,
+          "credits": 4,
+          "grade": "B-"
+        },
+        {
+          "name": "CAD/CAM",
+          "score": 82,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Jagan",
+      "reg": 962821201022,
+      "dept": "IT",
+      "clg": "UCEN",
+      "skills": [
+        "React",
+        "Spring Boot"
+      ],
+      "courses": [
+        {
+          "name": "Database Systems",
+          "score": 91,
+          "credits": 4,
+          "grade": "A"
+        },
+        {
+          "name": "Web Programming",
+          "score": 87,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Charan",
+      "reg": 963121202008,
+      "dept": "CSE",
+      "clg": "MIT",
+      "skills": [
+        "CSS",
+        "MySQL"
+      ],
+      "courses": [
+        {
+          "name": "Software Engineering",
+          "score": 84,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Compiler Design",
+          "score": 79,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Vijay",
+      "reg": 962821204047,
+      "dept": "ECE",
+      "clg": "UCEN",
+      "skills": [
+        "Flutter",
+        "MySQL"
+      ],
+      "courses": [
+        {
+          "name": "Microprocessors",
+          "score": 85,
+          "credits": 4,
+          "grade": "A-"
+        },
+        {
+          "name": "VLSI Design",
+          "score": 80,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Manoj",
+      "reg": 962821201030,
+      "dept": "IT",
+      "clg": "UCEN",
+      "skills": [
+        "JavaScript",
+        "React"
+      ],
+      "courses": [
+        {
+          "name": "AI Fundamentals",
+          "score": 83,
+          "credits": 4,
+          "grade": "B"
+        },
+        {
+          "name": "Machine Learning",
+          "score": 78,
+          "credits": 3,
+          "grade": "B-"
+        }
+      ]
+    },
+    {
+      "name": "Kiran",
+      "reg": 962821203026,
+      "dept": "MECH",
+      "clg": "UCEN",
+      "skills": [
+        "CSS",
+        "Flutter"
+      ],
+      "courses": [
+        {
+          "name": "Heat Transfer",
+          "score": 76,
+          "credits": 4,
+          "grade": "B-"
+        },
+        {
+          "name": "Material Science",
+          "score": 82,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Surya",
+      "reg": 963121203043,
+      "dept": "MECH",
+      "clg": "MIT",
+      "skills": [
+        "React",
+        "Flutter"
+      ],
+      "courses": [
+        {
+          "name": "Dynamics",
+          "score": 79,
+          "credits": 4,
+          "grade": "B"
+        },
+        {
+          "name": "Control Systems",
+          "score": 81,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Dev",
+      "reg": 963021201010,
+      "dept": "IT",
+      "clg": "CIT",
+      "skills": [
+        "React",
+        "HTML"
+      ],
+      "courses": [
+        {
+          "name": "Data Mining",
+          "score": 87,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Big Data",
+          "score": 84,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Aswin",
+      "reg": 962821203005,
+      "dept": "MECH",
+      "clg": "UCEN",
+      "skills": [
+        "Node.js",
+        "MySQL"
+      ],
+      "courses": [
+        {
+          "name": "Robotics",
+          "score": 83,
+          "credits": 4,
+          "grade": "B"
+        },
+        {
+          "name": "Mechatronics",
+          "score": 79,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Yogesh",
+      "reg": 962821203049,
+      "dept": "MECH",
+      "clg": "UCEN",
+      "skills": [
+        "Spring Boot",
+        "CSS"
+      ],
+      "courses": [
+        {
+          "name": "Automobile Engg",
+          "score": 78,
+          "credits": 4,
+          "grade": "B-"
+        },
+        {
+          "name": "IC Engines",
+          "score": 82,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Lokesh",
+      "reg": 963021204029,
+      "dept": "ECE",
+      "clg": "CIT",
+      "skills": [
+        "Flutter",
+        "MySQL"
+      ],
+      "courses": [
+        {
+          "name": "Embedded Systems",
+          "score": 86,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "DSP",
+          "score": 80,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Kavin",
+      "reg": 963121202027,
+      "dept": "CSE",
+      "clg": "MIT",
+      "skills": [
+        "Spring Boot",
+        "React"
+      ],
+      "courses": [
+        {
+          "name": "Computer Graphics",
+          "score": 89,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "AI Principles",
+          "score": 85,
+          "credits": 3,
+          "grade": "A-"
+        }
+      ]
+    },
+    {
+      "name": "Omprakash",
+      "reg": 962821203034,
+      "dept": "MECH",
+      "clg": "UCEN",
+      "skills": [
+        "CSS",
+        "HTML"
+      ],
+      "courses": [
+        {
+          "name": "Production Tech",
+          "score": 77,
+          "credits": 4,
+          "grade": "B-"
+        },
+        {
+          "name": "Operations Research",
+          "score": 81,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Ethan",
+      "reg": 962821202012,
+      "dept": "CSE",
+      "clg": "UCEN",
+      "skills": [
+        "Node.js",
+        "JavaScript"
+      ],
+      "courses": [
+        {
+          "name": "Cryptography",
+          "score": 90,
+          "credits": 4,
+          "grade": "A"
+        },
+        {
+          "name": "Network Security",
+          "score": 87,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Ajay",
+      "reg": 963021204003,
+      "dept": "ECE",
+      "clg": "CIT",
+      "skills": [
+        "Spring Boot",
+        "MySQL"
+      ],
+      "courses": [
+        {
+          "name": "Communication Systems",
+          "score": 84,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Antenna Theory",
+          "score": 79,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Zaid",
+      "reg": 963021201050,
+      "dept": "IT",
+      "clg": "CIT",
+      "skills": [
+        "Node.js",
+        "HTML"
+      ],
+      "courses": [
+        {
+          "name": "Cloud Architecture",
+          "score": 88,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "DevOps",
+          "score": 83,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Abishek",
+      "reg": 962821202002,
+      "dept": "CSE",
+      "clg": "UCEN",
+      "skills": [
+        "Spring Boot",
+        "Flutter"
+      ],
+      "courses": [
+        {
+          "name": "Distributed Systems",
+          "score": 86,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Parallel Computing",
+          "score": 82,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Irfan",
+      "reg": 963021202021,
+      "dept": "CSE",
+      "clg": "CIT",
+      "skills": [
+        "Spring Boot",
+        "JavaScript"
+      ],
+      "courses": [
+        {
+          "name": "Web Technologies",
+          "score": 89,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Mobile Computing",
+          "score": 84,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Hari",
+      "reg": 963021202017,
+      "dept": "CSE",
+      "clg": "CIT",
+      "skills": [
+        "CSS",
+        "HTML"
+      ],
+      "courses": [
+        {
+          "name": "Human-Computer Interaction",
+          "score": 85,
+          "credits": 4,
+          "grade": "A-"
+        },
+        {
+          "name": "UI/UX Design",
+          "score": 88,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Elavarasan",
+      "reg": 962821201013,
+      "dept": "IT",
+      "clg": "UCEN",
+      "skills": [
+        "HTML",
+        "React"
+      ],
+      "courses": [
+        {
+          "name": "Information Security",
+          "score": 83,
+          "credits": 4,
+          "grade": "B"
+        },
+        {
+          "name": "Ethical Hacking",
+          "score": 79,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Nithin",
+      "reg": 963021201033,
+      "dept": "IT",
+      "clg": "CIT",
+      "skills": [
+        "Node.js",
+        "CSS"
+      ],
+      "courses": [
+        {
+          "name": "Blockchain Tech",
+          "score": 87,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "IoT Fundamentals",
+          "score": 82,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Lalith",
+      "reg": 963021202028,
+      "dept": "CSE",
+      "clg": "CIT",
+      "skills": [
+        "HTML",
+        "MySQL"
+      ],
+      "courses": [
+        {
+          "name": "Database Admin",
+          "score": 90,
+          "credits": 4,
+          "grade": "A"
+        },
+        {
+          "name": "Data Warehousing",
+          "score": 85,
+          "credits": 3,
+          "grade": "A-"
+        }
+      ]
+    },
+    {
+      "name": "Sathish",
+      "reg": 962821201041,
+      "dept": "IT",
+      "clg": "UCEN",
+      "skills": [
+        "JavaScript",
+        "Node.js"
+      ],
+      "courses": [
+        {
+          "name": "Natural Language Processing",
+          "score": 84,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Computer Vision",
+          "score": 79,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Udhay",
+      "reg": 963121202045,
+      "dept": "CSE",
+      "clg": "MIT",
+      "skills": [
+        "JavaScript",
+        "MySQL"
+      ],
+      "courses": [
+        {
+          "name": "Software Testing",
+          "score": 86,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Quality Assurance",
+          "score": 82,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Keerthi",
+      "reg": 962821203025,
+      "dept": "MECH",
+      "clg": "UCEN",
+      "skills": [
+        "React",
+        "CSS"
+      ],
+      "courses": [
+        {
+          "name": "Finite Element Analysis",
+          "score": 78,
+          "credits": 4,
+          "grade": "B-"
+        },
+        {
+          "name": "Mech Vibrations",
+          "score": 83,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Deepak",
+      "reg": 962821201009,
+      "dept": "IT",
+      "clg": "UCEN",
+      "skills": [
+        "JavaScript",
+        "Spring Boot"
+      ],
+      "courses": [
+        {
+          "name": "Web Services",
+          "score": 89,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "REST APIs",
+          "score": 86,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Jeeva",
+      "reg": 962821201023,
+      "dept": "IT",
+      "clg": "UCEN",
+      "skills": [
+        "HTML",
+        "Node.js"
+      ],
+      "courses": [
+        {
+          "name": "Cloud Security",
+          "score": 84,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Cyber Laws",
+          "score": 80,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Aakash",
+      "reg": 962821201001,
+      "dept": "IT",
+      "clg": "UCEN",
+      "skills": [
+        "JavaScript",
+        "React"
+      ],
+      "courses": [
+        {
+          "name": "Deep Learning",
+          "score": 87,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Neural Networks",
+          "score": 83,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Praveen",
+      "reg": 963121204036,
+      "dept": "ECE",
+      "clg": "MIT",
+      "skills": [
+        "MySQL",
+        "HTML"
+      ],
+      "courses": [
+        {
+          "name": "Wireless Comm",
+          "score": 85,
+          "credits": 4,
+          "grade": "A-"
+        },
+        {
+          "name": "Satellite Comm",
+          "score": 79,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Karthik",
+      "reg": 963121201024,
+      "dept": "IT",
+      "clg": "MIT",
+      "skills": [
+        "Flutter",
+        "React"
+      ],
+      "courses": [
+        {
+          "name": "Mobile Security",
+          "score": 88,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "App Performance",
+          "score": 84,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Muhamad",
+      "reg": 962821201031,
+      "dept": "IT",
+      "clg": "UCEN",
+      "skills": [
+        "JavaScript",
+        "React"
+      ],
+      "courses": [
+        {
+          "name": "Data Analytics",
+          "score": 86,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Business Intelligence",
+          "score": 82,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Harish",
+      "reg": 962821201018,
+      "dept": "IT",
+      "clg": "UCEN",
+      "skills": [
+        "Node.js",
+        "CSS"
+      ],
+      "courses": [
+        {
+          "name": "Agile Methodologies",
+          "score": 85,
+          "credits": 4,
+          "grade": "A-"
+        },
+        {
+          "name": "Scrum Master",
+          "score": 88,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Arun",
+      "reg": 963121201004,
+      "dept": "IT",
+      "clg": "MIT",
+      "skills": [
+        "React",
+        "Spring Boot"
+      ],
+      "courses": [
+        {
+          "name": "Microservices",
+          "score": 89,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Containerization",
+          "score": 86,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Pranav",
+      "reg": 962821202035,
+      "dept": "CSE",
+      "clg": "UCEN",
+      "skills": [
+        "MySQL",
+        "JavaScript"
+      ],
+      "courses": [
+        {
+          "name": "NoSQL Databases",
+          "score": 87,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "MongoDB",
+          "score": 83,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Venkatesh",
+      "reg": 963021203046,
+      "dept": "MECH",
+      "clg": "CIT",
+      "skills": [
+        "React",
+        "Flutter"
+      ],
+      "courses": [
+        {
+          "name": "CAD Modeling",
+          "score": 82,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "3D Printing",
+          "score": 85,
+          "credits": 3,
+          "grade": "A-"
+        }
+      ]
+    },
+    {
+      "name": "Imran",
+      "reg": 963121202020,
+      "dept": "CSE",
+      "clg": "MIT",
+      "skills": [
+        "Node.js",
+        "JavaScript"
+      ],
+      "courses": [
+        {
+          "name": "Web Security",
+          "score": 88,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Penetration Testing",
+          "score": 84,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Gokul",
+      "reg": 962821204015,
+      "dept": "ECE",
+      "clg": "UCEN",
+      "skills": [
+        "MySQL",
+        "Flutter"
+      ],
+      "courses": [
+        {
+          "name": "IoT Systems",
+          "score": 85,
+          "credits": 4,
+          "grade": "A-"
+        },
+        {
+          "name": "Sensor Networks",
+          "score": 80,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Naveen",
+      "reg": 963121202032,
+      "dept": "CSE",
+      "clg": "MIT",
+      "skills": [
+        "Spring Boot",
+        "Node.js"
+      ],
+      "courses": [
+        {
+          "name": "Enterprise Architecture",
+          "score": 87,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "SOA",
+          "score": 83,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Vimal",
+      "reg": 963121202048,
+      "dept": "CSE",
+      "clg": "MIT",
+      "skills": [
+        "React",
+        "CSS"
+      ],
+      "courses": [
+        {
+          "name": "Frontend Frameworks",
+          "score": 89,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Responsive Design",
+          "score": 86,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Bala",
+      "reg": 962821202006,
+      "dept": "CSE",
+      "clg": "UCEN",
+      "skills": [
+        "CSS",
+        "Node.js"
+      ],
+      "courses": [
+        {
+          "name": "Web Performance",
+          "score": 85,
+          "credits": 4,
+          "grade": "A-"
+        },
+        {
+          "name": "Progressive Web Apps",
+          "score": 88,
+          "credits": 3,
+          "grade": "B+"
+        }
+      ]
+    },
+    {
+      "name": "Tharun",
+      "reg": 962821204044,
+      "dept": "ECE",
+      "clg": "UCEN",
+      "skills": [
+        "HTML",
+        "CSS"
+      ],
+      "courses": [
+        {
+          "name": "RF Engineering",
+          "score": 82,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Microwave Engg",
+          "score": 79,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    },
+    {
+      "name": "Ragul",
+      "reg": 962821203038,
+      "dept": "MECH",
+      "clg": "UCEN",
+      "skills": [
+        "Node.js",
+        "Flutter"
+      ],
+      "courses": [
+        {
+          "name": "Mechatronics",
+          "score": 84,
+          "credits": 4,
+          "grade": "B+"
+        },
+        {
+          "name": "Industrial Automation",
+          "score": 81,
+          "credits": 3,
+          "grade": "B"
+        }
+      ]
+    }
+  ]
+}

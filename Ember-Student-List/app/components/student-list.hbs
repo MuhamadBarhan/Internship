@@ -1,37 +1,36 @@
 <div class="table-container">
   <table id="table">
     <thead>
-      <tr>
+      <tr class="main-row">
         <th><input type="checkbox" {{on "change" @toggleSelectAll}} checked={{@selectAll}} /></th>
         {{#each @items as |item|}}
         {{#if (includes @visibleColumns item.key)}}
         <th class="resizable" data-key={{item.key}} {{did-insert @makeResizable}}>
           {{item.label}}
-
-          {{#if (or (eq item.key "name") (eq item.key "reg") (eq item.key "dept") (eq item.key "clg") (eq item.key
-          "skills"))}}
           <i class="bi bi-arrow-down-up" {{on "click" (fn @sortByKey item.key)}}></i>
-          {{/if}}
-
           <span class="resizer"></span>
+          <i class="bi bi-chevron-bar-right" style="float: right; opacity:0.7; cursor:default;"></i>
         </th>
         {{/if}}
         {{/each}}
-
         <th>Action</th>
       </tr>
     </thead>
-
 
     <tbody>
       {{#if (and @students (gt @students.length 0))}}
       <VerticalCollection @estimateHeight={{60}} @items={{@students}} @key="reg" @containerSelector=".table-container"
         as |student|>
-        <tr>
-          <td><input type="checkbox" /></td>
+        <tr data-reg={{student.reg}} class="main-row">
+
+          <td>
+            <input type="checkbox" />
+            <i class="bi bi-chevron-right chevron-icon {{if (includes @expandedRows student.reg) " rotate"}}" {{on "click" (fn @toggleRow student.reg)}}/>
+          </td>
+
           {{#each @items as |item|}}
           {{#if (includes @visibleColumns item.key)}}
-          <td>
+          <td {{on "click" (fn @toggleRow student.reg)}}>
             {{#if (eq item.key "skills")}}
             {{join-array student.skills ", "}}
             {{else}}
@@ -50,6 +49,18 @@
             </button>
           </td>
         </tr>
+
+        {{#if (includes @expandedRows student.reg)}}
+        <tr class="nested-row">
+          <td class="nested-row-first-child"></td>
+          <td colspan="7">
+            <div class="nested-content">
+              {{yield student}}
+            </div>
+          </td>
+        </tr>
+        {{/if}}
+
       </VerticalCollection>
       {{else}}
       <tr>

@@ -31,18 +31,53 @@ export default class StudentsController extends Controller {
   @tracked searchColumns = ['name'];
   @tracked lastSearchQuery = '';
 
-  @tracked items = [
-    { key: "reg", label: "Reg No" },
-    { key: "name", label: "Name" },
-    { key: "dept", label: "Dept" },
-    { key: "skills", label: "Skills" },
-    { key: "clg", label: "College" }
-  ];
+  @tracked expandedRows = [];
 
+  @tracked DEFAULT_COLUMNS = [];
+  @tracked items = [];
 
-  @action reorderItems(itemModels, draggedModel) {
+  constructor() {
+    super(...arguments);
+    this.students.loadStudents().then(() => {
+      this.DEFAULT_COLUMNS = this.students.items;
+      this.items = this.loadSavedColumns();
+    });
+  }
+
+  loadSavedColumns() {
+    try {
+      const saved = localStorage.getItem('studentColumns');
+      return saved ? JSON.parse(saved) : this.DEFAULT_COLUMNS;
+    } catch (e) {
+      console.error('Failed to load saved columns', e);
+      return this.DEFAULT_COLUMNS;
+    }
+  }
+
+  @action reorderItems(itemModels) {
     this.items = itemModels;
-    this.lastDragged = draggedModel;
+    this.saveColumns();
+  }
+
+  @action resetColumns() {
+    this.items = [...this.DEFAULT_COLUMNS];
+    this.saveColumns();
+  }
+
+  saveColumns() {
+    try {
+      localStorage.setItem('studentColumns', JSON.stringify(this.items));
+    } catch (e) {
+      console.error('Failed to save columns', e);
+    }
+  }
+
+  @action toggleRow(reg) {
+    if (this.expandedRows.includes(reg)) {
+      this.expandedRows = this.expandedRows.filter(r => r !== reg);
+    } else {
+      this.expandedRows = [...this.expandedRows, reg];
+    }
   }
 
   get isDeptChecked() {
@@ -58,46 +93,44 @@ export default class StudentsController extends Controller {
   @action makeResizable(th) {
     let resizer = th.querySelector('.resizer');
     if (!resizer) return;
-  
-    const key = th.getAttribute('data-key'); // Use unique key for each column
+
+    const key = th.getAttribute('data-key');
     const minWidth = 100;
-  
-    // Restore saved width on load
+
     let savedWidth = localStorage.getItem(`col-width-${key}`);
     if (savedWidth) {
       th.style.width = `${savedWidth}px`;
     }
-  
+
     let startX, startWidth;
-  
+
     const onMouseDown = (e) => {
       startX = e.pageX;
       startWidth = th.offsetWidth;
-  
+
       document.addEventListener('mousemove', onMouseMove);
       document.addEventListener('mouseup', onMouseUp);
     };
-  
+
     const onMouseMove = (e) => {
       let diff = e.pageX - startX;
       let newWidth = startWidth + diff;
       if (newWidth < minWidth) return;
-  
+
       th.style.width = `${newWidth}px`;
     };
-  
+
     const onMouseUp = () => {
       const finalWidth = th.offsetWidth;
       localStorage.setItem(`col-width-${key}`, finalWidth);
-  
+
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     };
-  
+
     resizer.addEventListener('mousedown', onMouseDown);
   }
-  
-  
+
   @action toggleFilter() {
     this.isFilterVisible = !this.isFilterVisible;
   }
@@ -160,7 +193,6 @@ export default class StudentsController extends Controller {
       };
     }
   }
-
 
   @action updateSkillsFilter(event) {
     let value = event.target.value;
@@ -259,7 +291,7 @@ export default class StudentsController extends Controller {
 
     let selectedRegs = Array.from(checkboxes).map(checkbox => {
       let row = checkbox.closest("tr");
-      return row.cells[1].textContent.trim();
+      return row.dataset.reg;
     });
 
     this.students.filteredStudents = this.students.filteredStudents.filter(

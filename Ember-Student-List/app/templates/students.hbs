@@ -32,10 +32,20 @@
             </button>
             {{#if this.isCustomizeVisible}}
             <div class="customize-column" {{on-click-outside this.toggleCustomize}}>
-                <span {{on "click" this.toggleCustomize}} {{on-key 'Escape' this.toggleCustomize}}
-                    class="close-modal"><i class="fa-solid fa-xmark"></i></span>
-                <strong>Columns</strong>
-                <p>Drag <i class="bi bi-list"></i> to sort columns</p>
+                <div class="customize-column-header">
+                    <div>
+                        <strong>Columns</strong>
+                        <p class="customize-desc">Drag <i class="bi bi-list"></i> to reorder columns</p>
+                    </div>
+                    <div class="customize-column-rc">
+                        <p {{on "click" this.resetColumns}} class="btn-reset">Reset Order</p>
+                        <p {{on "click" this.toggleCustomize}} {{on-key 'Escape' this.toggleCustomize}}
+                            class="close-modal"><i class="fa-solid fa-xmark"></i></p>
+                    </div>
+
+                </div>
+
+
                 <ul {{sortable-group onChange=this.reorderItems}}>
                     {{#each this.items as |col|}}
                     <li {{sortable-item model=col}}>
@@ -58,10 +68,13 @@
             </button>
             {{#if this.isFilterVisible}}
             <div class="advanced-filters" {{on-click-outside this.toggleFilter}}>
-                <span {{on "click" this.toggleFilter}} {{on-key 'Escape' this.toggleFilter}} class="close-modal"><i
-                        class="fa-solid fa-xmark"></i></span>
                 <div class="filter-section">
-                    <strong>Departments</strong>
+                    <div class="filter-section-header">
+                        <strong>Departments</strong>
+                        <span {{on "click" this.toggleFilter}} {{on-key 'Escape' this.toggleFilter}}
+                            class="close-modal"><i class="fa-solid fa-xmark"></i></span>
+                    </div>
+
                     <div class="filter-dept">
                         {{#each this.availableDepartments as |dept|}}
                         <label>
@@ -112,5 +125,29 @@
     <StudentList @items={{this.items}} @students={{this.students.filteredStudents}} @deleteRow={{this.deleteRow}}
         @editRow={{this.editRow}} @toggleSelectAll={{this.toggleSelectAll}} @selectAll={{this.selectAll}}
         @sortByName={{this.sortByName}} @isAscending={{this.isAscending}} @visibleColumns={{this.visibleColumns}}
-        @sortKey={{this.sortKey}} @sortByKey={{this.sortByKey}} @makeResizable={{this.makeResizable}} @generateWidthStyle={{this.generateWidthStyle}} @handleResize={{this.handleResize}}/>
+        @sortKey={{this.sortKey}} @sortByKey={{this.sortByKey}} @makeResizable={{this.makeResizable}}
+        @generateWidthStyle={{this.generateWidthStyle}} @handleResize={{this.handleResize}}
+        @expandedRows={{this.expandedRows}} @toggleRow={{this.toggleRow}} as |student|>
+
+        <table class="nested-table">
+            <thead style="z-index: 0;">
+                <tr>
+                    <th>Course</th>
+                    <th>Score</th>
+                    <th>Credits</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each student.courses as |course|}}
+                <tr>
+                    <td>{{course.name}}</td>
+                    <td>{{course.score}}</td>
+                    <td>{{course.credits}}</td>
+                    <td>{{course.grade}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </StudentList>
 </div>
