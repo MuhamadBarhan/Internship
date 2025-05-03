@@ -132,10 +132,9 @@
         <table class="nested-table">
             <thead style="z-index: 0;">
                 <tr>
-                    <th>Course</th>
-                    <th>Score</th>
-                    <th>Credits</th>
-                    <th>Grade</th>
+                    {{#each this.courseHeaders as |header|}}
+                    <th>{{header.label}}</th>
+                    {{/each}}
                 </tr>
             </thead>
             <tbody>

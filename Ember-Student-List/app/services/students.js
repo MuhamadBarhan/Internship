@@ -5,6 +5,7 @@ export default class StudentsService extends Service {
   @tracked students = [];
   @tracked filteredStudents = [];
   @tracked items = [];
+  @tracked courseHeaders = [];
 
   constructor() {
     super(...arguments);
@@ -17,9 +18,10 @@ export default class StudentsService extends Service {
     this.students = data.students;
     this.filteredStudents = this.students;
     this.items = data.items;
+    this.courseHeaders = data.courseHeaders;
   }
 
-  searchStudents(query, searchColumns = ['name', 'dept', 'clg']) {
+  searchStudents(query, searchColumns) {
     query = query.toLowerCase();
 
     this.filteredStudents = this.students.filter(student => {

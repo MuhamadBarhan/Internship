@@ -35,12 +35,14 @@ export default class StudentsController extends Controller {
 
   @tracked DEFAULT_COLUMNS = [];
   @tracked items = [];
+  @tracked courseHeaders = [];
 
   constructor() {
     super(...arguments);
     this.students.loadStudents().then(() => {
       this.DEFAULT_COLUMNS = this.students.items;
       this.items = this.loadSavedColumns();
+      this.courseHeaders = this.students.courseHeaders;
     });
   }
 
@@ -64,7 +66,7 @@ export default class StudentsController extends Controller {
     this.saveColumns();
   }
 
-  saveColumns() {
+  saveColumns() { 
     try {
       localStorage.setItem('studentColumns', JSON.stringify(this.items));
     } catch (e) {
@@ -95,7 +97,6 @@ export default class StudentsController extends Controller {
     if (!resizer) return;
 
     const key = th.getAttribute('data-key');
-    const minWidth = 100;
 
     let savedWidth = localStorage.getItem(`col-width-${key}`);
     if (savedWidth) {
@@ -115,8 +116,6 @@ export default class StudentsController extends Controller {
     const onMouseMove = (e) => {
       let diff = e.pageX - startX;
       let newWidth = startWidth + diff;
-      if (newWidth < minWidth) return;
-
       th.style.width = `${newWidth}px`;
     };
 

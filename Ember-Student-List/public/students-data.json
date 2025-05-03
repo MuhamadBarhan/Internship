@@ -21,6 +21,24 @@
       "label": "College"
     }
   ],
+  "courseHeaders": [
+    {
+      "key": "name",
+      "label": "Course"
+    },
+    {
+      "key": "score",
+      "label": "Score"
+    },
+    {
+      "key": "credits",
+      "label": "Credits"
+    },
+    {
+      "key": "grade",
+      "label": "Grade"
+    }
+  ],
   "students": [
     {
       "name": "Faiz",
